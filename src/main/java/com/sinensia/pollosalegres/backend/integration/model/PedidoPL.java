@@ -46,7 +46,7 @@ public class PedidoPL implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private EstadoPedidoPL estado;
 	
-	@ElementCollection(fetch = FetchType.LAZY)
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name="LINEAS_PEDIDO", joinColumns=@JoinColumn(name="CODIGO_PEDIDO"))
 	private List<LineaPedidoPL> lineas;
 	

@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mappings xmlns="http://dozer.sourceforge.net"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://dozer.sourceforge.net
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
-      
-    <!-- Business to Integration -->    
- 
+
+	<!-- Business to Integration -->
+
 	<mapping>
-		<class-a>com.sinensia.pollosalegres.backend.business.model.Categoria</class-a>
-		<class-b>com.sinensia.pollosalegres.backend.integration.model.CategoriaPL</class-b>
+		<class-a>com.sinensia.pollosalegres.backend.business.model.Categoria
+		</class-a>
+		<class-b>com.sinensia.pollosalegres.backend.integration.model.CategoriaPL
+		</class-b>
 		<field>
 			<a>nombre</a>
 			<b>name</b>
 		</field>
-	</mapping>  
-	
+	</mapping>
+
+	<mapping>
+		<class-a>com.sinensia.pollosalegres.backend.business.model.Pedido
+		</class-a>
+		<class-b>com.sinensia.pollosalegres.backend.integration.model.PedidoPL
+		</class-b>
+	</mapping>
+
 </mappings>
