@@ -3,6 +3,8 @@ package com.sinensia.pollosalegres.backend.presentation.controllers;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.nio.charset.StandardCharsets;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +33,7 @@ import com.sinensia.pollosalegres.backend.business.model.LineaPedido;
 import com.sinensia.pollosalegres.backend.business.model.Pedido;
 import com.sinensia.pollosalegres.backend.business.model.Producto;
 import com.sinensia.pollosalegres.backend.business.services.PedidoServices;
-import com.sinensia.pollosalegres.backend.presentation.controllers.PedidoController;
+import com.sinensia.pollosalegres.backend.presentation.config.RespuestaError;
 
 @WebMvcTest(value=PedidoController.class)
 class PedidosControllerTest {
@@ -67,6 +70,69 @@ class PedidosControllerTest {
 		String responseBodyEsperada = objectMapper.writeValueAsString(pedidos);
 				
 		assertThat(responseBody).isEqualToIgnoringWhitespace(responseBodyEsperada);
+	}
+	
+	@Test
+	void solicitamos_pedido_EXISTENTE_a_partir_de_su_numero() throws Exception {
+		
+		when(pedidoServices.read(1L)).thenReturn(Optional.of(pedido1));
+		
+		MvcResult respuesta = miniPostman.perform(get("/pedidos/1"))
+											.andExpect(status().isOk())
+											.andReturn();
+		
+		String responseBody = respuesta.getResponse().getContentAsString(StandardCharsets.UTF_8);
+		String responseBodyEsperada = objectMapper.writeValueAsString(pedido1);
+		
+		assertThat(responseBody).isEqualToIgnoringWhitespace(responseBodyEsperada);
+	}
+	
+	@Test
+	void solicitamos_pedido_con_PARAMETRO_NO_VALIDO_a_partir_de_su_numero() throws Exception {
+		
+		MvcResult respuesta = miniPostman.perform(get("/pedidos/fatalerror"))
+											.andExpect(status().isBadRequest())
+											.andReturn();
+		
+		RespuestaError respuestaError = new RespuestaError("El parámetro fatalerror es de tipo java.lang.String - Se requiere un parámetro de tipo Long");
+		
+		String responseBody = respuesta.getResponse().getContentAsString(StandardCharsets.UTF_8);
+		String responseBodyEsperada = objectMapper.writeValueAsString(respuestaError);
+		
+		assertThat(responseBody).isEqualToIgnoringWhitespace(responseBodyEsperada);	
+	}
+	
+	@Test
+	void creamos_pedido_ok() throws Exception {
+		
+		pedido1.setNumero(null);
+		
+		when(pedidoServices.create(pedido1)).thenReturn(467L);
+		
+		String requestBody = objectMapper.writeValueAsString(pedido1);
+		
+		miniPostman.perform(post("/pedidos").content(requestBody).contentType("application/json"))
+								.andExpect(status().isCreated())
+								.andExpect(header().string("Location","http://localhost/pedidos/467"));	
+	}
+	
+	@Test
+	void creamos_pedido_con_numero_no_null() throws Exception {
+			
+		when(pedidoServices.create(pedido1)).thenThrow(new IllegalStateException("EL MENSAJE"));
+	
+		String requestBody = objectMapper.writeValueAsString(pedido1);
+		
+		MvcResult respuesta = miniPostman.perform(post("/pedidos").content(requestBody).contentType("application/json"))
+													.andExpect(status().isBadRequest())
+													.andReturn();
+	
+		RespuestaError respuestaError = new RespuestaError("EL MENSAJE");
+		
+		String responseBody = respuesta.getResponse().getContentAsString(StandardCharsets.UTF_8);
+		String responseBodyEsperada = objectMapper.writeValueAsString(respuestaError);
+		
+		assertThat(responseBody).isEqualToIgnoringWhitespace(responseBodyEsperada);	
 	}
 	
 	
