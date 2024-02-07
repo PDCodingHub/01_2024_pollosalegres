@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,8 @@ public class ProductoServicesImpl extends AbstractServices implements ProductoSe
 
 	private ProductoPLRepository productoPLRepository;
 
-	public ProductoServicesImpl(ProductoPLRepository productoPLRepository) {
+	public ProductoServicesImpl(ProductoPLRepository productoPLRepository, DozerBeanMapper mapper) {
+		super(mapper);
 		this.productoPLRepository = productoPLRepository;
 	}
 

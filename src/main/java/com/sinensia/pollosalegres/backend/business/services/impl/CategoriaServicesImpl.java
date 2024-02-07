@@ -3,6 +3,7 @@ package com.sinensia.pollosalegres.backend.business.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
 
 import com.sinensia.pollosalegres.backend.business.model.Categoria;
@@ -17,7 +18,8 @@ public class CategoriaServicesImpl extends AbstractServices implements Categoria
 
 	private CategoriaPLRepository categoriaPLRepository;
 
-	public CategoriaServicesImpl(CategoriaPLRepository categoriaRepository) {
+	public CategoriaServicesImpl(CategoriaPLRepository categoriaRepository, DozerBeanMapper mapper) {
+		super(mapper);
 		this.categoriaPLRepository = categoriaRepository;
 	}
 

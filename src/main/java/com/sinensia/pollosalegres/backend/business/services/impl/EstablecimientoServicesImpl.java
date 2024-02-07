@@ -3,6 +3,7 @@ package com.sinensia.pollosalegres.backend.business.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +17,8 @@ public class EstablecimientoServicesImpl extends AbstractServices implements Est
 
 	private EstablecimientoPLRepository establecimientoPLRepository;
 
-	public EstablecimientoServicesImpl(EstablecimientoPLRepository establecimientoPLRepository) {
+	public EstablecimientoServicesImpl(EstablecimientoPLRepository establecimientoPLRepository, DozerBeanMapper mapper) {
+		super(mapper);
 		this.establecimientoPLRepository = establecimientoPLRepository;
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
 
 import com.sinensia.pollosalegres.backend.business.model.EstadoPedido;
@@ -20,7 +21,8 @@ public class PedidoServicesImpl extends AbstractServices implements PedidoServic
 
 	private PedidoPLRepository pedidoPLRepository;
 
-	public PedidoServicesImpl(PedidoPLRepository pedidoPLRepository) {
+	public PedidoServicesImpl(PedidoPLRepository pedidoPLRepository, DozerBeanMapper mapper) {
+		super(mapper);
 		this.pedidoPLRepository = pedidoPLRepository;
 	}
 

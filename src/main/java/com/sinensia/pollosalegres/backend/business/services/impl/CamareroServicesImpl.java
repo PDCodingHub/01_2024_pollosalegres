@@ -3,6 +3,7 @@ package com.sinensia.pollosalegres.backend.business.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,8 @@ public class CamareroServicesImpl extends AbstractServices implements CamareroSe
 
 	private CamareroPLRepository camareroPLRepository;
 
-	public CamareroServicesImpl(CamareroPLRepository camareroPLRepository) {
+	public CamareroServicesImpl(CamareroPLRepository camareroPLRepository, DozerBeanMapper mapper) {
+		super(mapper);
 		this.camareroPLRepository = camareroPLRepository;
 	}
 

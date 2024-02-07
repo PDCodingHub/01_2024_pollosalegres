@@ -9,10 +9,7 @@
 <body>
 	<div class="container-fluid">
 		<jsp:include page="header.jsp"/>
-		<h2>Pedido #${pedido.numero}</h2>
-		
-			
-			
+		<h2>Pedido #${pedido.numero}</h2>		
 	</div>
 </body>
 </html>

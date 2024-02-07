@@ -17,7 +17,7 @@ import com.sinensia.pollosalegres.backend.integration.model.EstablecimientoPL;
 import com.sinensia.pollosalegres.backend.integration.repositories.EstablecimientoPLRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class EstablecimientoServicesImplTest {
+class EstablecimientoServicesImplTest {
 
 	@Mock
 	private EstablecimientoPLRepository establecimientoPLRepository;
