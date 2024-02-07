@@ -2,30 +2,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<title>Pollos Primos</title>
 	<jsp:include page="common-in-head.jsp"/>
 </head>
 <body>
 	<div class="container-fluid">
 		<jsp:include page="header.jsp"/>
-		<h2>Listado de camareros</h2>
-		<table>
+		<h2>Listado de Categorias</h2>
+		<table class="table">
+			<caption>Listado de Categorias</caption>
 			<thead>
 				<tr>
-					<th>Código</th>
-					<th>DNI</th>
-					<th>Nombre Completo</th>
+					<th>Id</th>
+					<th>nombre</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="camarero" items="${camareros}">
+			<c:forEach var="categoria" items="${categorias}">
 				<tr>
-					<td>${camarero.id}</td>
-					<td>${camarero.dni}</td>
-					<td>${camarero.apellido1} ${camarero.apellido2}, ${camarero.nombre}</td>
+					<td>${categoria.id}</td>
+					<td>${categoria.nombre}</td>
 				</tr>
-				</c:forEach>
+			</c:forEach>
 			</tbody>
 		</table>
 	</div>
