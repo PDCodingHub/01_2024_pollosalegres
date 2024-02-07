@@ -25,7 +25,7 @@
 			<tbody>
 			<c:forEach var="pedido" items="${pedidos}">
 				<tr>
-					<td>${pedido.numero}</td>
+					<td><a href="ficha-pedido?numero=${pedido.numero}">${pedido.numero}</a></td>
 					<td>${pedido.establecimiento.nombreComercial}</td>
 					<td><fmt:formatDate value="${pedido.fecha}" pattern="dd/MM/yyyy"/></td>
 					
