@@ -10,12 +10,13 @@
 	<div class="container-fluid">
 		<jsp:include page="header.jsp"/>
 		<h2>Listado de camareros</h2>
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>Código</th>
 					<th>DNI</th>
 					<th>Nombre Completo</th>
+					<th>Licencia Manipulador Alimentos
 				</tr>
 			</thead>
 			<tbody>
@@ -24,6 +25,7 @@
 					<td>${camarero.id}</td>
 					<td>${camarero.dni}</td>
 					<td>${camarero.apellido1} ${camarero.apellido2}, ${camarero.nombre}</td>
+					<td>${camarero.licenciaManipuladorAlimentos}</td>
 				</tr>
 				</c:forEach>
 			</tbody>
