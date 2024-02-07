@@ -64,7 +64,7 @@ public class AppCategoriaController {
 			// TODO
 		}
 			
-		return new RedirectView("listado-<categorias");
+		return new RedirectView("listado-categorias");
 	}
 	
 }
