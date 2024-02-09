@@ -69,7 +69,7 @@ class PedidoControllerTest extends AbstractControllerTest{
 		
 		when(pedidoServices.read(1011L)).thenReturn(Optional.of(pedido1));
 		
-		MvcResult respuesta = mockMvc.perform(get("/pedidos/1012"))
+		MvcResult respuesta = mockMvc.perform(get("/pedidos/1011"))
 											.andExpect(status().isOk())
 											.andReturn();
 		
