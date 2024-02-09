@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import com.sinensia.pollosalegres.backend.business.services.CamareroServices;
 import com.sinensia.pollosalegres.backend.presentation.config.PresentationException;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/camareros")
 public class CamareroController {
 
